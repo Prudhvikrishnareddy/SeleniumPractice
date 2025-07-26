@@ -30,7 +30,7 @@ public class BaseClass {
         if (actualTitle.equals("DEMOQA")) {
             System.out.println("Opened application is correct");
         } else {
-            System.out.println("Application not opened");
+            System.out.println("Application not opened success");
         }
 
         return driver;
