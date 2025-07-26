@@ -1,32 +1,41 @@
 package com.utilities.demoqa;
 
 import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class BaseClass {
-	
 
-	WebDriver driver;
-	
+    WebDriver driver;
 
-	public WebDriver getDriver() {
-		driver = new EdgeDriver();
+    // Set the system property for ChromeDriver
+    public WebDriver getDriver() {
+        
+    	System.setProperty("webdriver.chrome.driver", "C:\\Users\\mprud\\Downloads\\chromedriver-win64\\chromedriver-win64\\chromedriver.exe");
+    	ChromeOptions options = new ChromeOptions();
+    	options.addArguments("--remote-allow-origins=*");
+        driver = new ChromeDriver(options);
+        
+        driver.get("https://demoqa.com/elements");
+        driver.manage().window().maximize();
+        
+        // Use a reasonable timeout value (10 or 15 seconds is typically enough)
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
-		driver.get("https://demoqa.com/elements");
-		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(1000, TimeUnit.SECONDS);
+        // Validate the page title
+        String actualTitle = driver.getTitle();
+        if (actualTitle.equals("DEMOQA")) {
+            System.out.println("Opened application is correct");
+        } else {
+            System.out.println("Application not opened");
+        }
 
-		String actual_tile = driver.getTitle();
+        return driver;
+    }
+    
+    // Optional: Method to close the browser and cleanup resources
+     }
 
-		if (actual_tile.equals("DEMOQA")) {
-			System.out.println("Opened application is correct");
-		} else {
-			System.out.println("Application not opened");
-		}
-		return driver;
-
-	}
-
-}
