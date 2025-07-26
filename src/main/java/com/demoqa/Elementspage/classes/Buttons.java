@@ -19,7 +19,7 @@ String doubleCLick="//button[@id='doubleClickBtn']";
 String rightClick="//button[@id='rightClickBtn']";
 String clickMe="//button[@id='uFz6W']";
 
-public void ButtonsSelect() {
+public void ButtonsSelectupdated() {
 	
 	au.iClick(driver, buttonsIcon);
 
